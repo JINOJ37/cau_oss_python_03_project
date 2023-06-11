@@ -69,7 +69,7 @@ def start_process(path):
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                
+
                 # 튜플[keywords]: 순서대로 최소위도[min_lat], 최대위도[max_lat], 최소경도[min_long], 최대경도[max_long]를 저장
                 keywords = (min_lat, max_lat, min_lon, max_lon) 
                 parking_spot_list = parking_spot_manager.filter_by_location(parking_spot_list, keywords)
@@ -78,13 +78,22 @@ def start_process(path):
                 print("invalid input")
 
         elif select == 3:
+            """ 3번 옵션 [sort]
+            필터를 할 기준의 키[keyword]를 문자열로 입력
+            
+            1)keyword가 keywords 목록에 있다면
+            parking_spot_manager 모듈의 sort_by_keyword 함수 호출
+            2) 없다면
+            출력: "invalid input"
+
+            정렬 수행 후 기존 객체리스트 삭제 및 반환되는 새로운 리스트 저장
+            """
             keywords = ['name', 'city', 'district', 'ptype', 'latitude', 'longitude']
             print("---sort by---")
             print(keywords)
             keyword = input('type keyword:')
             if keyword in keywords:
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.sort_by_keyword(parking_spot_list, keyword)
             else: print("invalid input")
 
         elif select == 4:

@@ -110,6 +110,15 @@ def filter_by_location(spots, locations):
                                     i.get('longitude') < locations[3]]
     return new_list
 
+def sort_by_keyword(spots, keyword):
+    """ sort_by_keyword 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), keyword(정렬기준, 문자열)
+    
+    정렬은 내장함수 sorted 이용
+    sorted의 비교기준을 정하는 key 매개변수의 인수는 lambda 기능 사용하여 구현
+    """
+    return sorted(spots, key = lambda x:x.get(keyword)) # get 메소드를 사용하여 정렬 비교 기준 key값 확보
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
