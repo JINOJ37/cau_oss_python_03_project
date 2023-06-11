@@ -21,6 +21,10 @@ def start_process(path):
             parking_spot_manager.print_spots(parking_spot_list)
 
         elif select == 2:
+            """ 2번 옵션 [filter]
+            필터를 할 기준의 키의 종류 5개 중 하나를 선택
+            필터 수행 후 기존 객체리스트 삭제 및 반환되는 새로운 리스트 저장
+            """
             print("---filter by---")
             print("[1] name")
             print("[2] city")
@@ -28,29 +32,48 @@ def start_process(path):
             print("[4] ptype")
             print("[5] location")
             select = int(input('type:'))
+
             if select == 1:
+                """ [1] name
+                parking_spot_manager 모듈의 filter_by_name 함수 호출
+                """
                 keyword = input('type name:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_name(parking_spot_list, keyword)
+            
             elif select == 2:
+                """ [2] city
+                parking_spot_manager 모듈의 filter_by_city 함수 호출
+                """
                 keyword = input('type city:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_city(parking_spot_list, keyword)
+            
             elif select == 3:
+                """ [3] district
+                parking_spot_manager 모듈의 filter_by_district 함수 호출
+                """
                 keyword = input('type district:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_district(parking_spot_list, keyword)
+           
             elif select == 4:
+                """ [4] ptype
+                parking_spot_manager 모듈의 filter_by_ptype 함수 호출
+                """
                 keyword = input('type ptype:')
-                print("not implemented yet")
-                # fill this block
+                parking_spot_list = parking_spot_manager.filter_by_ptype(parking_spot_list, keyword)
+            
             elif select == 5:
+                """ [5] location
+                parking_spot_manager 모듈의 filter_by_location 함수 호출
+                """
                 min_lat = float(input('type min lat:'))
                 max_lat = float(input('type max lat:'))
                 min_lon = float(input('type min long:'))
                 max_lon = float(input('type max long:'))
-                print("not implemented yet")
-                # fill this block
+                
+                # 튜플[keywords]: 순서대로 최소위도[min_lat], 최대위도[max_lat], 최소경도[min_long], 최대경도[max_long]를 저장
+                keywords = (min_lat, max_lat, min_lon, max_lon) 
+                parking_spot_list = parking_spot_manager.filter_by_location(parking_spot_list, keywords)
+            
             else:
                 print("invalid input")
 

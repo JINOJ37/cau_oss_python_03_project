@@ -30,7 +30,7 @@ class parking_spot:
         return self.__item[keyword]
 
 def str_list_to_class_list(str_list):
-    """ str_list_to_class_list 메소드
+    """ str_list_to_class_list 함수
     매개변수: str_list(문자열 리스트) -> [순번], [자원명], [시도], [시군구], [주차장유형], [경도], [위도] 데이터 문자열
 
     parking_spot 클래스 객체의 리스트로 변환 후 반환
@@ -48,7 +48,7 @@ def str_list_to_class_list(str_list):
     return parking_spot_list 
 
 def print_spots(spots):
-    """ print_spots 메소드
+    """ print_spots 함수
     매개변수: spots(parking_spot 클래스 객체의 리스트)
 
     spots 리스트에 저장된 모든 객체의 값 출력
@@ -57,6 +57,59 @@ def print_spots(spots):
     for i in spots:
         print(i) # __str__ 메소드 사용
         
+def filter_by_name(spots, name):
+    """ filter_by_name 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), name(키워드)
+
+    리스트함축 기능 사용하여 데이터 필터링 후 생성된 새로운 리스트 반환
+    필터: 매개변수 name을 포함하는 모든 데이터
+    """
+    new_list = [i for i in spots if name in i.get('name')]
+    return new_list
+
+def filter_by_city(spots, city):
+    """ filter_by_city 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), city(키워드)
+
+    리스트함축 기능 사용하여 데이터 필터링 후 생성된 새로운 리스트 반환
+    필터: 매개변수 city을 포함하는 모든 데이터
+    """
+    new_list = [i for i in spots if city in i.get('city')]
+    return new_list
+
+def filter_by_district(spots, district):
+    """ filter_by_district 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), district(키워드)
+
+    리스트함축 기능 사용하여 데이터 필터링 후 생성된 새로운 리스트 반환
+    필터: 매개변수 district을 포함하는 모든 데이터
+    """
+    new_list = [i for i in spots if district in i.get('district')]
+    return new_list
+
+def filter_by_ptype(spots, ptype):
+    """ filter_by_ptype 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), ptype(키워드)
+
+    리스트함축 기능 사용하여 데이터 필터링 후 생성된 새로운 리스트 반환
+    필터: 매개변수 ptype을 포함하는 모든 데이터
+    """
+    new_list = [i for i in spots if ptype in i.get('ptype')]
+    return new_list
+
+def filter_by_location(spots, locations):
+    """ filter_by_location 함수
+    매개변수: spots(parking_spot 클래스 객체의 리스트), locations(키워드)
+
+    리스트함축 기능 사용하여 데이터 필터링 후 생성된 새로운 리스트 반환
+    필터: 최소위도보다 크고, 최대위도보다 작으며, 최소경도보다 크고, 최대경도보다 작은 모든 데이터
+    """
+    new_list = [i for i in spots if locations[0] < i.get('latitude') and \
+                                    i.get('latitude') < locations[1] and \
+                                    locations[2] < i.get('longitude') and \
+                                    i.get('longitude') < locations[3]]
+    return new_list
+
 
 # 각 단계별로 테스트 (테스트할때 주석해제 후 사용)
 if __name__ == '__main__':
